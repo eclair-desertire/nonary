@@ -1,0 +1,4 @@
+from rest_framework.pagination import PageNumberPagination
+from utils.pagination import FasterDjangoPaginator
+
+PageNumberPagination.django_paginator_class = FasterDjangoPaginator

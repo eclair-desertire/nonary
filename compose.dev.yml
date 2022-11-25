@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  small:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: django
+    container_name: small
+    restart: always
+    depends_on:
+      - small_db
+      - redis
+    volumes:
+      - .:/app
+      - local_media_data:/media_data
+      - local_static_data:/static
+    env_file:
+      - core/.env
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    command: /start-django
+    networks:
+      main: { }
+
+  small_db:
+    image: postgres:latest
+    container_name: small_db
+    restart: always
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - ./shop/sql_queries/get_product_price.sql:/docker-entrypoint-initdb.d/get_product_price.sql
+      - ./shop/sql_queries/get_product_rest.sql:/docker-entrypoint-initdb.d/get_product_rest.sql
+      - ./shop/sql_queries/get_product_is_favourite.sql:/docker-entrypoint-initdb.d/get_product_is_favourite.sql
+      - ./shop/sql_queries/get_product_popularity.sql:/docker-entrypoint-initdb.d/get_product_popularity.sql
+      - ./shop/sql_queries/get_product_rating.sql:/docker-entrypoint-initdb.d/get_product_rating.sql
+      - ./shop/sql_queries/get_product_comments.sql:/docker-entrypoint-initdb.d/get_product_comments.sql
+    env_file:
+      - core/.env
+    ports:
+      - "5439:5432"
+    networks:
+      main: { }
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - local_static_data:/static
+      - local_media_data:/media_data
+    ports:
+      - "8005:80"
+    depends_on:
+      - small
+    networks:
+      main: { }
+  redis:
+    image: redis
+    command: redis-server
+    volumes:
+      - local_redis_data:/data
+    networks:
+      main: { }
+
+
+volumes:
+  local_postgres_data: {}
+  local_redis_data: {}
+  local_media_data: {}
+  local_static_data: {}
+
+networks:
+  main: {}

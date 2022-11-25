@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "small"
+version = "0.1.0"
+description = ""
+authors = ["Zhanibek"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^4.0.6"
+djangorestframework = "^3.13.1"
+django-filter = "^22.1"
+django-cleanup = "^6.0.0"
+djangorestframework-jsonapi = "^5.0.0"
+django-cors-headers = "^3.13.0"
+django-extensions = "^3.2.0"
+drf-yasg = "^1.21.3"
+django-environ = "^0.9.0"
+django-debug-toolbar = "^3.5.0"
+psycopg2 = "^2.9.3"
+PyJWT = "^2.4.0"
+Pillow = "^9.2.0"
+transliterate = "^1.10.2"
+channels = "^3.0.5"
+django-after-response = "^0.2.2"
+fcm-django = "^1.0.12"
+channels-redis = "^3.4.1"
+django-imagekit = "^4.1.0"
+django-db-logger = "^0.1.12"
+django-jazzmin = "^2.5.0"
+django-summernote = "^0.8.20"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

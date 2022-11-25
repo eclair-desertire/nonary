@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="RU">
+
+<head>
+    <meta charset="UTF-8" content="">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="x-apple-disable-message-reformatting" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="telephone=no" name="format-detection">
+    <title></title>
+    <!--[if (mso 16)]>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <![endif]-->
+    <!--[if gte mso 9]>
+    <style>sup {
+        font-size: 100% !important;
+    }</style><![endif]-->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG></o:AllowPNG>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+</head>
+
+<body>
+<div class="es-wrapper-color">
+    <!--[if gte mso 9]>
+    <v:background xmlns:v="urn:schemas-microsoft-com:vml" fill="t">
+        <v:fill type="tile" color="#f6f6f6"></v:fill>
+    </v:background>
+    <![endif]-->
+    <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr>
+            <td class="esd-email-paddings" valign="top">
+                <table class="esd-header-popover es-header" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                    <tr>
+                        <td class="esd-stripe" align="center">
+                            <table class="es-header-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff"
+                                   align="center">
+                                <tbody>
+                                <tr>
+                                    <td class="esd-structure es-p20t es-p20r es-p20l es-m-p0" align="left">
+                                        <table cellspacing="0" cellpadding="0" width="100%">
+                                            <tbody>
+                                            <tr>
+                                                <td class="es-m-p0r esd-container-frame" width="560" valign="top"
+                                                    align="center">
+                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="left" class="esd-block-image es-m-p20"
+                                                                style="font-size: 0;"><a target="_blank"><img
+                                                                    src="{{ domain }}{% static 'images/ios_1024.png' %}"
+                                                                    alt="..." style="display: block;" width="64"></a></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="es-content" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                    <tr>
+                        <td class="esd-stripe" align="center">
+                            <table class="es-content-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff"
+                                   align="center">
+                                <tbody>
+                                <tr>
+                                    <td class="es-p20t es-p20r es-p20l esd-structure" align="left">
+                                        <table width="100%" cellspacing="0" cellpadding="0">
+                                            <tbody>
+                                            <tr>
+                                                <td class="esd-container-frame" width="560" valign="top" align="center">
+                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="left" class="esd-block-text">
+                                                                <p>Здравствуйте, <strong>{{ full_name }}</strong>!<br><br>Вы
+                                                                    изменили свой электронный адрес на <span
+                                                                            style="color:#7B61FF;">{{ email }}</span>.
+                                                                    Чтобы подтвердить это действие, введите указанный
+                                                                    ниже код в приложении.</p>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                            <tr>
+                                                <td width="560" class="esd-container-frame" align="center" valign="top">
+                                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="center" class="esd-block-text es-m-txt-c es-p10">
+                                                                <h2>{{ token }}<span style="font-size:20px;"></span></h2>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="es-footer" cellspacing="0" cellpadding="0" align="center">
+                    <tbody>
+                    <tr>
+                        <td class="esd-stripe" align="center">
+                            <table class="es-footer-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff"
+                                   align="center">
+                                <tbody>
+                                <tr>
+                                    <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left">
+                                        <table cellspacing="0" cellpadding="0" width="100%">
+                                            <tbody>
+                                            <tr>
+                                                <td class="esd-container-frame" width="560" align="left">
+                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="left" class="esd-block-text">
+                                                                <p>Если вы не регистрировались в приложении&nbsp;<a
+                                                                        href="#" style="color:#7B61FF;">tvoy.kz</a>,
+                                                                    просто игнорируйте данное письмо.</p>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" class="es-content esd-footer-popover" align="center">
+                    <tbody>
+                    <tr>
+                        <td class="esd-stripe" align="center">
+                            <table class="es-content-body" width="600" cellspacing="0" cellpadding="0" bgcolor="#ffffff"
+                                   align="center">
+                                <tbody>
+                                <tr>
+                                    <td class="esd-structure es-p20t es-p20b es-p20r es-p20l"
+                                        style="background-color: #efefef;" bgcolor="#efefef" align="left">
+                                        <!--[if mso]>
+                                        <table width="560" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td width="180" valign="top"><![endif]-->
+                                        <table class="es-left" cellspacing="0" cellpadding="0" align="left">
+                                            <tbody>
+                                            <tr>
+                                                <td class="es-m-p0r es-m-p20b esd-container-frame" width="180"
+                                                    valign="top" align="center">
+                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td align="center" class="esd-empty-container"
+                                                                style="display: none;"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if mso]></td>
+                                                     <td width="20"></td>
+                                                     <td width="360" valign="top"><![endif]-->
+                                        <table cellspacing="0" cellpadding="0" align="right">
+                                            <tbody>
+                                            <tr>
+                                                <td class="esd-container-frame" width="360" align="left">
+                                                    <table width="100%" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="esd-block-social es-infoblock es-m-txt-c"
+                                                                align="right" style="font-size: 0px;">
+                                                                <table class="es-table-not-adapt es-social"
+                                                                       cellspacing="0" cellpadding="0">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td class="es-p10r" valign="top" align="center">
+                                                                            <a target="_blank"
+                                                                               href="https://instagram.com/tvoy.kz?igshid=YmMyMTA2M2Y="><img
+                                                                                    title="Instagram"
+                                                                                    src="https://zbdvkc.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png"
+                                                                                    alt="Inst" width="32"></a></td>
+                                                                        <td valign="top" align="center"><a
+                                                                                target="_blank"
+                                                                                href="https://www.youtube.com/channel/UC8h0e3SQJJ1BWW5ABs_ACXg/featured"><img
+                                                                                title="Youtube"
+                                                                                src="https://zbdvkc.stripocdn.email/content/assets/img/social-icons/logo-black/youtube-logo-black.png"
+                                                                                alt="Yt" width="32"></a></td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <!--[if mso]></td></tr></table><![endif]-->
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

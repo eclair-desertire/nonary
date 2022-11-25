@@ -1,0 +1,14 @@
+<TKKPG>
+    <Request>
+        <Operation>Purchase</Operation>
+        <Order>
+            <Merchant>{{ merchant }}</Merchant>
+            <OrderID>{{ order_id }}</OrderID>
+        </Order>
+        <SessionID>{{ session_id }}</SessionID>
+        <Amount>{{ total_price }}</Amount>
+        <Currency>{{ currency }}</Currency>
+        <CardUID>{{ card_token }}</CardUID>
+        <ResponseFormat>TKKPG</ResponseFormat>
+    </Request>
+</TKKPG>

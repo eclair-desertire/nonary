@@ -1,0 +1,20 @@
+<TKKPG>
+    <Request>
+        <Operation>{{ operation }}</Operation>
+        <Language>RU</Language>
+        <Order>
+            <OrderType>{{ order_type }}</OrderType>
+            <Merchant>{{ merchant }}</Merchant>
+            <Amount>{{ amount }}</Amount>
+            <Currency>{{ currency }}</Currency>
+            <Description>{{ order_description }}</Description>
+            <ApproveURL>{{ approve_url }}</ApproveURL>
+            <CancelURL>{{ cancel_url }}</CancelURL>
+            <DeclineURL>{{ decline_url }}</DeclineURL>
+            <AddParams>
+                <OrderExpirationPeriod>30</OrderExpirationPeriod>
+                <CustomerContact>{{ customer_contact }}</CustomerContact>
+            </AddParams>
+        </Order>
+    </Request>
+</TKKPG>

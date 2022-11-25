@@ -1,0 +1,16 @@
+<TKKPG>
+    <Request>
+        <Operation>CreateOrder</Operation>
+        <Language>RU</Language>
+        <Order>
+            <OrderType>Purchase</OrderType>
+            <Merchant>{{ merchant }}</Merchant>
+            <Amount>{{ amount }}</Amount>
+            <Currency>398</Currency>
+            <Description>New Order</Description>
+            <AddParam>
+                <OrderExpirationPeriod>30</OrderExpirationPeriod>
+            </AddParam>
+        </Order>
+    </Request>
+</TKKPG>
