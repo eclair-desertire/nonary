@@ -52,7 +52,7 @@ LOCAL_APPS = [
     'location.apps.LocationConfig',
     'main_page.apps.MainPageConfig',
     'shop.apps.ShopConfig',
-    # 'chat.apps.ChatConfig',
+    'chat.apps.ChatConfig',
     'promo.apps.PromoConfig',
     'notification.apps.NotificationConfig',
     'contact.apps.ContactConfig',

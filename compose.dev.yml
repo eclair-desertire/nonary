@@ -50,7 +50,7 @@ services:
       - local_static_data:/static
       - local_media_data:/media_data
     ports:
-      - "8005:80"
+      - "80:80"
     depends_on:
       - small
     networks:
