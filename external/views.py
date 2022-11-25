@@ -19,7 +19,7 @@ from xml.etree import ElementTree
 
 
 class WebHookCommerceMLView(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
     parser_classes = (CustomFileUploadParser, )
 
     def get(self, request):
