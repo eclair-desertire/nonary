@@ -281,3 +281,6 @@ class Compilation(BaseModel):
 #             prices_dict.update({
 #                  f"{city.slug}_{price.storehouse.storehouse_type}": price.price
 #             })
+
+class Currency(BaseModel):
+    ruble=models.FloatField('Курс Рубля:',blank=True,default=0)

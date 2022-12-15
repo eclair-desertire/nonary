@@ -48,6 +48,45 @@ class UserAddress(BaseModel):
         return f"{self.city.name}, {self.street}"
 
 
+class TOO(BaseModel):
+    company_name=models.CharField(max_length=255,verbose_name="Название компании")
+
+    street = models.TextField()
+    office = models.CharField(max_length=255, blank=True)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True, related_name='addresses')
+    user = models.ForeignKey('auth_user.User', on_delete=models.CASCADE, blank=True, null=True,
+                             related_name='addresses')
+
+    business_number=models.CharField(max_length=255,verbose_name="БИН")
+    bank=models.CharField(max_length=255,verbose_name="Банк")
+    kbe=models.CharField(max_length=255,verbose_name="КБЕ")
+    bik=models.CharField(max_length=255,verbose_name="БИК")
+    account_number=models.CharField(max_length=255,verbose_name="Номер счета")
+
+    @property
+    def full_address(self):
+        a = [self.city.name]
+        if self.street:
+            a.append(self.street)
+        if self.office:
+            a.append(f"кв. {self.office}")
+        return ", ".join(a)
+
+    @property
+    def only_street(self):
+        a = []
+        if self.street:
+            a.append(self.street)
+        if self.office:
+            a.append(f"кв. {self.office}")
+        return ", ".join(a)
+
+    def __str__(self):
+        return f"{self.city.name}, {self.street}"
+
+
 class Post(BaseModel):
     name = models.CharField(max_length=255, verbose_name='Название')
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='posts', verbose_name='Город')
