@@ -83,16 +83,10 @@ class WebHookCommerceMLView(APIView):
 
     def post(self, request):
         file_path = "./"
-        client_file = request.FILES['file']
+        json_data=json.loads(request.body)
         # first dump the zip file to a directory
-        with open(file_path + '%s' % client_file.name, 'wb+') as dest:
-            for chunk in client_file.chunks():
-                dest.write(chunk)
-
-        # unzip the zip file to the same directory
-        with zipfile.ZipFile(file_path + client_file.name, 'r') as zip_ref:
-            zip_ref.extractall(file_path)
-
+        with open(file_path+'%s'+'test.json','wb+') as jsonfile:
+            json.dump(json_data,jsonfile)
         # os.remove(file_path + client_file.name)
         return HttpResponse('success')
 
