@@ -22,7 +22,7 @@ from order.models import Order
 from order.serializers import AddToBasketSerializer, AddToBasketResponseSerializer, BasketDetailSerializer, \
     CreateOrderSerializer, AddPromoToOrderSerializer, OrderCreateSerializer, ChangeOrderDeliverySerializer, \
     OrderPriceInfoSerializer, OrderDetailSerializer, OrderDetailHistorySerializer, OrderListHistorySerializer, \
-    CopyOrderSerializer, OrderPriceInfoSerializerResponse
+    CopyOrderSerializer, OrderPriceInfoSerializerResponse, PayOrderSerializer
 from order.services.client.basket import add_product_to_basket, get_basket_info, clear_basket
 from order.services.client.orders import assign_user_to_order, create_order, get_order_history, add_promo, \
     create_order_without_basket, change_order_delivery, get_order_for_calculation_info, prefetch_order_history, \
@@ -117,10 +117,28 @@ class CreateOrderView(APIView):
                 else:
                     pay_url = pay_with_new_card(current_site, order)
             else:
-                order.is_basket = False
+                # order.is_basket = False
                 order.status = OrderStatusChoices.NEW
                 order.save()
             return Response({'url': pay_url, 'id': order.id})
+
+
+class PayOrderView(APIView):
+
+    @swagger_auto_schema(
+        request_body=PayOrderSerializer()
+    )
+    def post(self, request):
+        serializer = PayOrderSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        order = serializer.validated_data.get('order')
+        pay_url = None
+        if order.payment.payment_type == PaymentTypeChoice.CARD:
+            current_site = get_current_site(request)
+            protocol = 'https' if request.is_secure() else 'http'
+            current_site = f"{protocol}://{current_site}"
+            pay_url = pay_with_new_card(current_site, order)
+        return Response({'url': pay_url, 'id': order.id})
 
 
 class OrderCreateNoBasketView(APIView):
@@ -250,7 +268,7 @@ class CardRegistrationWebhook(APIView):
                 order_status = message.find('OrderStatus')
                 if order_status is not None and order_status.text == 'APPROVED':
                     instance.paid = True
-                    instance.is_basket = False
+                    # instance.is_basket = False
                     instance.status = OrderStatusChoices.NEW
                     instance.save()
                     send_webkassa(instance)

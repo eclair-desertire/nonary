@@ -20,7 +20,6 @@ ReviewImage = apps.get_model(app_label='shop', model_name='ReviewImage')
 ProductPrice = apps.get_model(app_label='shop', model_name='ProductPrice')
 Compilation = apps.get_model(app_label='shop', model_name='Compilation')
 Rest = apps.get_model(app_label='shop', model_name='Rest')
-Currency=apps.get_model(app_label='shop',model_name='Currency')
 
 
 def get_category_queryset(filter_lookup):
@@ -29,7 +28,6 @@ def get_category_queryset(filter_lookup):
 
 def get_child_category_queryset(filter_lookup):
     return get_object_queryset(app_label='shop', model_name='ChildCategory', filter_lookup=filter_lookup)
-
 
 
 def get_subcategory_queryset(filter_lookup):

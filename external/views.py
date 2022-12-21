@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 from external.services.commerce_ml_export import get_export_order_xml
@@ -19,7 +19,7 @@ from xml.etree import ElementTree
 
 
 class WebHookCommerceMLView(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (IsAuthenticated, )
     parser_classes = (CustomFileUploadParser, )
 
     def get(self, request):
@@ -56,10 +56,10 @@ class WebHookCommerceMLView(APIView):
                 if os.path.exists(file_path):
                     if 'offers' in filename:
                         response_text = 'success'
-                        # os.remove(file_path)
+                        os.remove(file_path)
                     elif 'promo' in filename:
                         response_text = 'success'
-                        # os.remove(file_path)
+                        os.remove(file_path)
                     else:
                         import_status, created = get_or_create_import_status(filename)
                         response_text = 'progress'

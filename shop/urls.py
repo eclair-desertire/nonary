@@ -5,7 +5,7 @@ from shop.views import (
     CategoryViewSet, SubcategoryViewSet, BrandViewSet, ProductListView, FavouriteView, DeliveryListView,
     ProductSlugView, ProductExternalView, ReviewListView, CreateReviewView, CreateUsefulReviewView, TopBrandViewSet,
     ProductListFilterCountView, ProductSimilarListView, ChildCategoryViewSet, PaymentListView,
-    ProductSimilarByBrandListView, ProductBuyWithListView, ProductSeenListView, CompilationListView, CurrencyView
+    ProductSimilarByBrandListView, ProductBuyWithListView, ProductSeenListView, CompilationListView
 )
 
 router = DefaultRouter()
@@ -28,7 +28,6 @@ router.register('buy-with-goods', ProductBuyWithListView, basename='buy-with-goo
 router.register('goods', ProductListView, basename='goods')
 router.register('payment-types', PaymentListView, basename='payment-types')
 router.register('compilations', CompilationListView, basename='compilations')
-router.register('currency',CurrencyView, basename='currency')
 
 urlpatterns = [
     path('favourite/', FavouriteView.as_view(), name='set-favourite'),

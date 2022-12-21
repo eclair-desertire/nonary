@@ -1,14 +1,12 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from django.shortcuts import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import status
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin
 from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet
 
 from location.services.client.querysets import filter_category_by_city, filter_subcategory_by_city, \
     filter_child_category_by_city
@@ -18,7 +16,7 @@ from shop.serializers import CategorySerializer, SubcategoryDetailSerializer, Pr
     FavouriteProductSerializer, DeliveryListSerializer, DeliveryQuerySerializer, ProductDetailSerializer, \
     ProductDetailResponseSerializer, ReviewListSerializer, ReviewCreateSerializer, UsefulReviewSerializer, \
     ProductCountSerializer, SimilarProductQuerySerializer, ChildCategorySerializer, PaymentListSerializer, \
-    CompilationSerializer, CurrencySerializer
+    CompilationSerializer
 from shop.services.client.querysets import get_subcategory_queryset, get_category_queryset, get_brand_queryset, \
     get_product_queryset, filter_by_property, get_delivery_queryset, get_review_queryset, get_similar_products, \
     get_child_category_queryset, get_payment_queryset, get_similar_by_brand, get_buy_with_this, get_seen_products, \
@@ -27,7 +25,6 @@ from shop.services.client.user import set_unset_favourite, set_seen_product
 from utils.crud import get_object_queryset
 from utils.manual_parameters import QUERY_CITY_SLUG, QUERY_ORDERING, QUERY_PRODUCT_ID, QUERY_COMPILATION
 from utils.viewsets import CustomGenericViewSet
-from .models import Currency
 
 
 class CategoryViewSet(ListModelMixin, RetrieveModelMixin, CustomGenericViewSet):
@@ -338,32 +335,3 @@ class CompilationListView(ListModelMixin, GenericViewSet):
     filter_backends = (DjangoFilterBackend, SearchFilter, )
     search_fields = ('name', )
     filterset_class = CompilationFilter
-
-class CurrencyView(ModelViewSet):
-    permission_classes=(IsAuthenticated,)
-    serializer_class=CurrencySerializer
-    queryset=Currency.objects.all()
-
-    @swagger_auto_schema(
-        responses={200: CurrencySerializer()},
-    )
-    def get(self, request):
-        try:
-            curr=get_object_or_404(Currency.objects.all(),pk=1)
-            serializer=CurrencySerializer(curr)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except:
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-    @swagger_auto_schema(
-        responses={200: CurrencySerializer()},
-    )
-    def post(self, request):
-        try:
-            curr=get_object_or_404(Currency.objects.all(),pk=1)
-            serializer=CurrencySerializer(curr, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data,status=status.HTTP_200_OK)
-        except:
-            return super().create(request)

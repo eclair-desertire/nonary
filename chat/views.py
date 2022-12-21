@@ -65,10 +65,10 @@ class CreateMessageView(CreateModelMixin, GenericViewSet):
         chat_id = instance.chat_id
         instance.chat.save()
         context = self.get_serializer_context()
-        context.update({'companion': request.user})
+        context.update({'companion': None})
         message = MessageListSerializer(instance, context=context).data
         moderator_context = context.copy()
-        moderator_context.update({'companion': None})
+        moderator_context.update({'companion': request.user})
         moderator_message = MessageListSerializer(instance, context=moderator_context).data
         message.update({
             'is_my': True
@@ -107,11 +107,11 @@ class CreateModeratorMessageView(CreateMessageView):
         context = self.get_serializer_context()
         moderator_companion = request.user
         context.update({
-            'companion': moderator_companion,
+            'companion': None,
         })
         message = MessageListSerializer(instance, context=context).data
         client_context = context.copy()
-        client_context.update({'companion': None})
+        client_context.update({'companion': moderator_companion})
         client_message = MessageListSerializer(instance, context=client_context).data
         client_message.update({
             'is_my': False
@@ -122,6 +122,8 @@ class CreateModeratorMessageView(CreateMessageView):
         })
         send_to_channel(chat_id, message)
         client = get_moderator(instance.chat, request.user)
+        moderator_chat_qs = get_chat_list(request.user)
+        send_to_global(ChatListSerializer(moderator_chat_qs.first(), context=context).data)
         if client:
             client_chat_qs = get_chat_list(client)
             send_to_client_global(ChatListSerializer(client_chat_qs.first(), context=context).data, client.id)

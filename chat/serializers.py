@@ -30,12 +30,13 @@ class ChatListSerializer(BaseSerializer):
     def get_avatar(self, instance):
         companion = self.context.get('companion')
         request = self.context.get('request')
-        current_domain = get_current_domain_with_protocol(request)
         if request:
+            current_domain = get_current_domain_with_protocol(request)
             if companion:
                 avatar = companion.avatar
                 if avatar:
                     return f"{current_domain}/{avatar.url}"
+                return None
             for member in instance.member_list:
                 if member.user != request.user:
                     avatar = member.user.avatar
@@ -54,9 +55,9 @@ class ChatListSerializer(BaseSerializer):
     def get_author(self, instance):
         companion = self.context.get('companion')
         request = self.context.get('request')
-        if companion:
-            return companion.full_name
         if request:
+            if companion:
+                return companion.full_name
             for member in instance.member_list:
                 if member.user != request.user:
                     return member.user.full_name

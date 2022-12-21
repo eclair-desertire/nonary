@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from order.views import (
     AddBasketItemView, BasketDetailView, SetUserToBasket, CreateOrderView, OrderHistoryView, AddPromoToOrderView,
     FortePaymentTestView, CardRegistrationWebhook, OrderCreateNoBasketView, ChangeOrderDeliveryView,
-    GetOrderPriceInfo, OrderInfoView, CopyOrderView, ClearBasket
+    GetOrderPriceInfo, OrderInfoView, CopyOrderView, ClearBasket, PayOrderView
 )
 
 router = DefaultRouter()
@@ -24,5 +24,6 @@ urlpatterns = [
     path('payment-<str:payment_status>/<str:order_id>/', CardRegistrationWebhook.as_view(), name='payment-webhook'),
     path('test-payment/', FortePaymentTestView.as_view()),
     path('copy/', CopyOrderView.as_view(), name='copy-order'),
+    path('pay/', PayOrderView.as_view(), name='pay-order'),
     path('clear-basket/<str:token>/', ClearBasket.as_view(), name='clear-basket'),
 ] + router.urls

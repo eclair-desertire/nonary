@@ -114,7 +114,7 @@ def pay_with_token(current_site, instance):
                             return False
                         if order_status.text == 'APPROVED':
                             instance.paid = True
-                            instance.is_basket = False
+                            # instance.is_basket = False
                             instance.status = OrderStatusChoices.NEW
                             instance.save()
                             send_webkassa(instance)

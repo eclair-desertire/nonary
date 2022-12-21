@@ -101,7 +101,7 @@ def create_order(user, token, validated_data):
         if rest - item.quantity - ordered_items_count < 0:
             raise serializers.ValidationError('Некоторых товаров из корзины больше нет в наличий!')
 
-    # order.is_basket = False
+    order.is_basket = False
     order.ordered_at = timezone.now()
     for key, value in validated_data.items():
         if key in ['delivery', 'payment', 'comment', 'is_accept_offer', 'card']:
@@ -128,8 +128,6 @@ def add_promo(user, validated_data):
 def get_order_history(user):
     orders = Order.objects.filter(
         is_basket=False, user=user
-    ).exclude(
-        status=OrderStatusChoices.NOT_FINISHED
     ).annotate(
         has_ticket=Case(
             When(ticket_url__isnull=False, then=Value(True, output_field=BooleanField())),

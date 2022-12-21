@@ -41,10 +41,10 @@ class ProductFilter(filters.FilterSet):
     level3 = filters.CharFilter(field_name='categories__slug')
     price_min = filters.NumberFilter(field_name='discount_price', lookup_expr='gte')
     price_max = filters.NumberFilter(field_name='discount_price', lookup_expr='lte')
-    barcode=filters.CharFilter(field_name='barcode')
+
     class Meta:
         model = Product
-        fields = ['brand', 'category', 'stocks', 'level3', 'price_min', 'price_max','barcode']
+        fields = ['brand', 'category', 'stocks', 'level3', 'price_min', 'price_max']
 
 
 class ReviewFilter(filters.FilterSet):

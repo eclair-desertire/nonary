@@ -113,6 +113,10 @@ class CreateOrderSerializer(BaseSerializer):
         return attrs
 
 
+class PayOrderSerializer(BaseSerializer):
+    order = serializers.PrimaryKeyRelatedField(queryset=Order.objects.all())
+
+
 class ChangeOrderDeliverySerializer(BaseSerializer):
     address = serializers.PrimaryKeyRelatedField(queryset=UserAddress.objects.all(), required=False)
     delivery = serializers.PrimaryKeyRelatedField(queryset=Delivery.objects.all())

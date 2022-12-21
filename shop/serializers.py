@@ -3,7 +3,7 @@ from decimal import Decimal
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework import serializers
 
-from shop.models import Product, ReviewImage, ProductReview, ReviewUseful, Payment, Currency
+from shop.models import Product, ReviewImage, ProductReview, ReviewUseful, Payment
 from shop.services.client.serialized_data import get_properties, reformat_properties
 from utils.serializers import BaseSerializer
 
@@ -205,9 +205,3 @@ class PaymentListSerializer(serializers.ModelSerializer):
 class CompilationSerializer(BaseSerializer):
     id = serializers.IntegerField()
     name = serializers.CharField()
-
-class CurrencySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model=Currency
-        fields='__all__'

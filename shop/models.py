@@ -79,10 +79,7 @@ class Product(SlugModel):
                                  verbose_name='Базовая единица')
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Бренд',
                               related_name='products')
-
-    categories = models.ManyToManyField('self', related_name='products', verbose_name='Категории',symmetrical=False)
-    my_parent=models.ForeignKey('self',related_name='',on_delete=models.CASCADE)
-
+    categories = models.ManyToManyField(ChildCategory, related_name='products', verbose_name='Категории')
     external_id = models.CharField(max_length=1000, verbose_name='ИД в 1с')
     similar_products = models.ManyToManyField('self', blank=True, verbose_name='Другие характеристики',
                                               symmetrical=False, related_name='main_products')
@@ -281,6 +278,3 @@ class Compilation(BaseModel):
 #             prices_dict.update({
 #                  f"{city.slug}_{price.storehouse.storehouse_type}": price.price
 #             })
-
-class Currency(BaseModel):
-    ruble=models.FloatField('Курс Рубля:',blank=True,default=0)
