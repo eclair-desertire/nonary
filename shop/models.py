@@ -81,7 +81,7 @@ class Product(SlugModel):
                               related_name='products')
 
     categories = models.ManyToManyField('self', related_name='products', verbose_name='Категории',symmetrical=False)
-    my_parent=models.ForeignKey('self',related_name='')
+    my_parent=models.ForeignKey('self',related_name='',on_delete=models.CASCADE)
 
     external_id = models.CharField(max_length=1000, verbose_name='ИД в 1с')
     similar_products = models.ManyToManyField('self', blank=True, verbose_name='Другие характеристики',
